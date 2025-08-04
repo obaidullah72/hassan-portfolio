@@ -6163,7 +6163,9 @@ html.lenis body {
 /*  3.5.1 Header Style 1
 /*----------------------------------------*/
 .rs-header-logo img {
-  max-width: 110px;
+  max-width: 150px;
+  width: 150px;
+  height: auto;
 }
 
 .logo-white {
@@ -6976,6 +6978,63 @@ html.lenis body {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
+}
+
+.rs-banner-two .rs-banner-bottom .signature-img {
+  max-width: 500px;
+  height: auto;
+  filter: brightness(0.9) contrast(1.1);
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.rs-banner-two .rs-banner-bottom .signature-img:hover {
+  opacity: 1;
+  filter: brightness(1) contrast(1.2);
+  transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+  .rs-banner-two .rs-banner-bottom .signature-img {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rs-banner-two .rs-banner-bottom .signature-img {
+    max-width: 120px;
+  }
+}
+
+/* Signature image styles for about page */
+.rs-about-bio .signature-img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  filter: brightness(0.9) contrast(1.1);
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.rs-about-bio .signature-img:hover {
+  opacity: 1;
+  filter: brightness(1) contrast(1.2);
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .rs-about-bio .signature-img {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rs-about-bio .signature-img {
+    max-width: 120px;
+  }
 }
 .rs-banner-two .rs-banner-social-wrapper {
   position: relative;
@@ -10216,7 +10275,9 @@ html.lenis body {
   display: none;
 }
 .rs-footer-one .rs-footer-widget-logo img {
-  max-width: 110px;
+  max-width: 150px;
+  width: 150px;
+  height: auto;
 }
 .rs-footer-one .rs-footer-list {
   display: flex;
@@ -10289,7 +10350,9 @@ html.lenis body {
   margin-bottom: 30px;
 }
 .rs-footer-two .rs-footer-widget-logo img {
-  max-width: 110px;
+  max-width: 150px;
+  width: 150px;
+  height: auto;
 }
 .rs-footer-two .rs-footer-copyright a:hover {
   color: var(--rs-theme-primary);
@@ -14111,7 +14174,7 @@ html.lenis body {
 .rs-text-slide-two .rs-text-slider-item .rs-text-slider-inner {
   padding: 20px 0px 20px 0px;
   border: 1px solid var(--rs-border-primary);
-  background: var(--rs-white);
+  background: transparent;
 }
 @media only screen and (min-width: 576px) and (max-width: 767px), (max-width: 575px) {
   .rs-text-slide-two .rs-text-slider-item .rs-text-slider-inner {
@@ -14123,9 +14186,7 @@ html.lenis body {
   letter-spacing: 4px;
   font-weight: 700;
   position: relative;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: var(--rs-border-secondary);
+  color: #333333;
   line-height: 0.8;
 }
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
