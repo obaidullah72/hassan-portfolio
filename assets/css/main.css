@@ -4218,7 +4218,7 @@ code {
 
 .loader .loader-icon img {
   animation: loaderpulse alternate 900ms infinite;
-  width: 40px;
+  width: 80px;
 }
 
 @keyframes loaderspin {
