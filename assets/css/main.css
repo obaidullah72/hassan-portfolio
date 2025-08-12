@@ -17774,6 +17774,39 @@ html.lenis body {
 .rs-skill-two {
   padding-top: 40px;
 }
+
+/* Fluid Typography System for Skills Section */
+.rs-skill-two .rs-section-title {
+  font-size: clamp(24px, 4vw, 48px);
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.rs-skill-two .rs-section-subtitle {
+  font-size: clamp(13px, 2vw, 18px);
+  font-weight: 500;
+}
+
+.rs-skill-two .rs-skill-title {
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.rs-skill-two .rs-skill-description p {
+  font-size: clamp(11px, 2vw, 16px);
+  line-height: 1.6;
+}
+
+.rs-skill-two .rs-skill-tab a {
+  font-size: clamp(11px, 2vw, 16px);
+  font-weight: 500;
+}
+
+.rs-skill-two .progress-number {
+  font-size: clamp(12px, 2vw, 16px);
+  font-weight: 600;
+}
 .rs-skill-two .rs-skill-shape {
   position: absolute;
   left: 0;
@@ -17855,6 +17888,19 @@ html.lenis body {
   padding: 8px 20px 8px 20px;
   font-size: 16px;
   font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.rs-skill-two .rs-skill-tab a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.rs-skill-two .rs-skill-tab a:active {
+  transform: translateY(0);
 }
 .rs-skill-two .rs-skill-tab a.active {
   background: var(--rs-theme-primary);
@@ -17888,6 +17934,289 @@ html.lenis body {
 .rs-skill-two.has-theme-yellow .progress-bar {
   background-color: var(--rs-theme-yellow);
 }
+
+/* Mobile and Tablet Responsive Styles for Skills Section */
+@media (max-width: 991px) {
+  .rs-skill-two .rs-skill-tab .nav {
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 20px;
+    padding: 15px;
+  }
+  
+  .rs-skill-two .rs-skill-tab a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  
+  .rs-skill-two .rs-skill-item {
+    padding: 25px 20px;
+    margin-bottom: 20px;
+  }
+  
+  .rs-skill-two .rs-skill-top {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .rs-skill-two .rs-skill-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .rs-skill-two .rs-skill-icon img {
+    height: 28px;
+  }
+  
+  .rs-skill-two .rs-skill-description {
+    margin-bottom: 25px;
+  }
+  
+  .rs-skill-two .rs-skill-description p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  .rs-skill-two .rs-skill-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive fonts for tablet */
+  .rs-skill-two .rs-section-title {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+  
+  .rs-skill-two .rs-section-subtitle {
+    font-size: 16px;
+  }
+  
+  .rs-skill-two .rs-section-subtitle img {
+    width: 24px;
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .rs-skill-two {
+    padding-top: 30px;
+  }
+  
+  .rs-skill-two .rs-skill-tab {
+    margin-bottom: 30px;
+  }
+  
+  .rs-skill-two .rs-skill-tab .nav {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .rs-skill-two .rs-skill-tab a {
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 15px;
+  }
+  
+  .rs-skill-two .rs-skill-item {
+    padding: 20px 15px;
+    margin-bottom: 15px;
+  }
+  
+  .rs-skill-two .rs-skill-top {
+    margin-bottom: 25px;
+    gap: 12px;
+  }
+  
+  .rs-skill-two .rs-skill-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .rs-skill-two .rs-skill-icon img {
+    height: 25px;
+  }
+  
+  .rs-skill-two .rs-skill-title {
+    font-size: 16px;
+  }
+  
+  .rs-skill-two .rs-skill-description p {
+    font-size: 13px;
+  }
+  
+  .rs-skill-two .progress-number {
+    font-size: 14px;
+    top: -25px;
+  }
+  
+  .rs-skill-two .rs-section-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  
+  .rs-skill-two .rs-section-subtitle {
+    font-size: 14px;
+  }
+  
+  /* Mobile font improvements */
+  .rs-skill-two .rs-skill-tab a {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  .rs-skill-two .rs-skill-title {
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  
+  .rs-skill-two .rs-skill-description p {
+    line-height: 1.6;
+    color: var(--rs-body-color);
+  }
+}
+
+@media (max-width: 575px) {
+  .rs-skill-two .rs-skill-tab .nav {
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .rs-skill-two .rs-skill-tab a {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+  
+  .rs-skill-two .rs-skill-item {
+    padding: 18px 12px;
+    margin-bottom: 12px;
+  }
+  
+  .rs-skill-two .rs-skill-top {
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+  
+  .rs-skill-two .rs-skill-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .rs-skill-two .rs-skill-icon img {
+    height: 22px;
+  }
+  
+  .rs-skill-two .rs-skill-title {
+    font-size: 15px;
+  }
+  
+  .rs-skill-two .rs-skill-description p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+  
+  .rs-skill-two .rs-section-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .rs-skill-two .rs-section-subtitle {
+    font-size: 13px;
+  }
+  
+  .rs-skill-two .rs-section-subtitle img {
+    width: 20px;
+    height: auto;
+  }
+  
+  /* Small mobile font optimizations */
+  .rs-skill-two .rs-skill-tab a {
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  
+  .rs-skill-two .rs-skill-title {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+  }
+  
+  .rs-skill-two .progress-number {
+    font-size: 13px;
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 480px) {
+  .rs-skill-two .rs-skill-tab .nav {
+    max-width: 280px;
+    padding: 8px;
+  }
+  
+  .rs-skill-two .rs-skill-tab a {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+  
+  .rs-skill-two .rs-skill-item {
+    padding: 15px 10px;
+  }
+  
+  .rs-skill-two .rs-skill-top {
+    margin-bottom: 18px;
+  }
+  
+  .rs-skill-two .rs-skill-icon {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .rs-skill-two .rs-skill-icon img {
+    height: 20px;
+  }
+  
+  .rs-skill-two .rs-skill-title {
+    font-size: 14px;
+  }
+  
+  .rs-skill-two .rs-skill-description p {
+    font-size: 11px;
+  }
+  
+  .rs-skill-two .rs-section-title {
+    font-size: 22px;
+  }
+  
+  .rs-skill-two .rs-section-subtitle {
+    font-size: 12px;
+  }
+  
+  /* Extra small mobile optimizations */
+  .rs-skill-two .rs-skill-tab a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .rs-skill-two .rs-skill-item {
+    border-radius: 8px;
+  }
+  
+  .rs-skill-two .progress {
+    height: 8px;
+  }
+  
+  .rs-skill-two .progress-bar {
+    height: 8px;
+  }
+}
+
 .rs-skill-three .rs-skill-wrapper {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
