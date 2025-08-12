@@ -1,0 +1,275 @@
+/* ===== Testimonials (unique prefix: tn-) ===== */
+:root {
+    --tn-blue: #3b82f6;
+    --tn-ink: #0f172a;
+    --tn-muted: #64748b;
+    --tn-card: #ffffff;
+    --tn-border: #e8eefc;
+    --tn-gap: 22px;
+    --tn-perView: 1;
+    /* JS reads this value */
+    --tn-shadow: 0 6px 12px rgba(15, 23, 42, .05);
+    /* reduced shadow */
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: #fff;
+    color: var(--tn-ink);
+}
+
+/* Section */
+.tn-testimonials {
+    padding: 56px 16px 80px;
+    background: #fff;
+}
+
+.tn-testimonials__wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tn-eyebrow {
+    letter-spacing: .18em;
+    font-size: 12px;
+    color: var(--tn-blue);
+    margin: 0 0 10px;
+}
+
+.tn-title {
+    margin: 0 0 26px;
+    font-size: clamp(22px, 3.4vw, 36px);
+    color: var(--tn-ink);
+    font-weight: 800;
+}
+
+/* Slider */
+.tn-slider {
+    position: relative
+}
+
+.tn-viewport {
+    overflow: hidden
+}
+
+.tn-track {
+    display: flex;
+    gap: var(--tn-gap);
+    will-change: transform;
+    transition: transform .5s cubic-bezier(.22, .61, .36, 1);
+}
+
+/* Card */
+.tn-card {
+    flex: 0 0 calc((100% - (var(--tn-gap) * (var(--tn-perView) - 1))) / var(--tn-perView));
+    position: relative;
+    border-radius: 14px;
+    padding: 20px 22px 18px;
+    background: var(--tn-card);
+    text-align: left;
+    border: 1px solid var(--tn-border);
+    box-shadow: var(--tn-shadow);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Corner quotes (“ ”) with hover pulse */
+.tn-card__quotes {
+    position: absolute;
+    top: 18px;
+    right: 16px;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    justify-content: center;
+    background: #eef2ff;
+    color: #a5b4fc;
+    border-radius: 10px;
+    padding: 4px 7px;
+    font-weight: 800;
+    font-size: 58px;
+    line-height: 0.40;
+    user-select: none;
+    transition: color .25s ease, background .25s ease;
+}
+
+.tn-card__quotes span {
+    font-family: Georgia, "Times New Roman", serif
+}
+
+.tn-card__quotes::after {
+    content: "";
+    position: absolute;
+    inset: auto;
+    right: -8px;
+    top: -8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 999px;
+    border: 2px solid #dbeafe;
+    background: #fff;
+    opacity: 0;
+    transform: scale(.6);
+    transition: opacity .3s ease, transform .3s ease;
+}
+
+.tn-card:hover .tn-card__quotes {
+    background: #e0ecff;
+    color: var(--tn-blue);
+}
+
+.tn-card:hover .tn-card__quotes::after {
+    opacity: 1;
+    transform: scale(1);
+    animation: tn-pulse 1.6s ease-out infinite;
+}
+
+@keyframes tn-pulse {
+    0% {
+        transform: scale(.9);
+        opacity: .9
+    }
+
+    70% {
+        transform: scale(1.25);
+        opacity: 0
+    }
+
+    100% {
+        transform: scale(1.25);
+        opacity: 0
+    }
+}
+
+/* Text */
+.tn-card__title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--tn-ink);
+}
+
+.tn-stars {
+    color: #f5a623;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    user-select: none;
+}
+
+.tn-card__text {
+    margin: 0 0 16px;
+    color: var(--tn-muted);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.tn-author__name {
+    margin: 0 0 2px;
+    font-weight: 700;
+    color: var(--tn-ink);
+    font-size: 14px;
+}
+
+.tn-author__role {
+    margin: 0;
+    color: var(--tn-muted);
+    font-size: 12px;
+}
+
+/* Hover border “runner” effect — slower & subtle */
+@property --tn-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.tn-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 14px;
+    background:
+        conic-gradient(from var(--tn-angle),
+            transparent 0deg, transparent 332deg,
+            var(--tn-blue) 332deg, var(--tn-blue) 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .25s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.tn-card:hover::after,
+.tn-card:focus-within::after {
+    opacity: 1;
+    animation: tn-spin 3.2s linear infinite;
+}
+
+/* slower */
+
+@keyframes tn-spin {
+    to {
+        --tn-angle: 360deg;
+    }
+}
+
+/* Dots */
+.tn-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.tn-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: #cbd5e1;
+    border: 0;
+}
+
+.tn-dot--active {
+    background: var(--tn-blue);
+}
+
+/* Breakpoints -> CSS var controls items per view */
+@media (min-width:640px) {
+    :root {
+        --tn-perView: 2;
+    }
+}
+
+/* tablet: 2 */
+@media (min-width:1024px) {
+    :root {
+        --tn-perView: 3;
+    }
+}
+
+/* desktop: 3 */
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce) {
+    .tn-track {
+        transition: none
+    }
+
+    .tn-card::after {
+        animation: none
+    }
+
+    .tn-card__quotes::after {
+        animation: none
+    }
+}

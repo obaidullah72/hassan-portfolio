@@ -1,0 +1,130 @@
+:root {
+    --xm-speed-1: 40s;
+    /* slower top strip */
+    --xm-speed-2: 50s;
+    /* slower bottom strip */
+    --xm-stroke: #1f2a44;
+    /* outline color */
+    --xm-fill: rgba(226, 232, 247, 0.30);
+    /* subtle text fill */
+    --xm-alpha: .65;
+    /* text opacity */
+    --xm-band: #f0f2f8;
+    /* darker band background */
+    --xm-border: #dce1eb;
+    /* band border color */
+}
+
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    background: #fff;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Fixed container */
+.xm-marquee {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Strips */
+.xm-strip {
+    position: absolute;
+    left: 50%;
+    width: 180vw;
+    transform-origin: center;
+    background: #f9faff;
+    border: 1px solid var(--xm-border);
+    border-radius: 14px;
+    padding: 14px 0;
+    /* band thickness */
+    filter: drop-shadow(0 6px 16px rgba(15, 23, 42, .04));
+}
+
+/* Crossed positions (as requested earlier) */
+.xm-strip--a {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-7deg);
+}
+
+.xm-strip--b {
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(7deg);
+}
+
+/* Track for infinite scroll */
+.xm-track {
+    display: flex;
+    gap: 6vw;
+    width: max-content;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Text style (slightly smaller) */
+.xm-chunk {
+    font-weight: 800;
+    letter-spacing: .06em;
+    font-size: clamp(32px, 6vw, 96px);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 0.4px var(--xm-stroke);
+    text-shadow: 0 0 0 var(--xm-fill);
+    background: linear-gradient(var(--xm-fill), var(--xm-fill));
+    -webkit-background-clip: text;
+    background-clip: text;
+    white-space: nowrap;
+}
+
+/* Animation */
+@keyframes xm-scroll {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+
+    to {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+.xm-strip--a .xm-track {
+    animation: xm-scroll var(--xm-speed-1) linear infinite;
+}
+
+.xm-strip--b .xm-track {
+    animation: xm-scroll var(--xm-speed-2) linear infinite reverse;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .xm-strip {
+        width: 220vw;
+        padding: 16px 0;
+    }
+
+    .xm-chunk {
+        font-size: clamp(24px, 10vw, 70px);
+    }
+
+    .xm-strip--a {
+        transform: translate(-45%, -60%) rotate(-10deg);
+    }
+
+    .xm-strip--b {
+        transform: translate(-45%, -60%) rotate(10deg);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .xm-track {
+        animation: none;
+    }
+}

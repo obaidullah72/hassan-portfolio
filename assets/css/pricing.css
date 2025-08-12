@@ -1,0 +1,311 @@
+:root {
+    --pp-blue: #3b82f6;
+    --pp-ink: #0f172a;
+    --pp-muted: #64748b;
+    --pp-card-bg: #f2f4ff;
+    --pp-border: #e6eeff;
+    --pp-gap: 22px;
+    --pp-shadow: 0 6px 14px rgba(15, 23, 42, .05);
+    --pp-btn-blue: #2563eb;
+}
+
+/* Base */
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--pp-ink);
+    background: #fff;
+}
+
+/* Section */
+.pp-pricing {
+    padding: 56px 16px 86px
+}
+
+.pp-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center
+}
+
+.pp-eyebrow {
+    letter-spacing: .18em;
+    font-size: 12px;
+    color: var(--pp-blue);
+    margin: 0 0 10px;
+    font-weight: 700
+}
+
+.pp-title {
+    margin: 0 0 28px;
+    font-size: clamp(22px, 3.4vw, 36px);
+    font-weight: 800;
+    line-height: 1.12
+}
+
+/* Grid */
+.pp-grid {
+    display: grid;
+    gap: var(--pp-gap)
+}
+
+@media (min-width:700px) {
+    .pp-grid {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media (min-width:1100px) {
+    .pp-grid {
+        grid-template-columns: repeat(4, 1fr)
+    }
+}
+
+/* Card */
+.pp-card {
+    position: relative;
+    background: var(--pp-card-bg);
+    border: 1px solid var(--pp-border);
+    border-radius: 16px;
+    padding: 36px 22px;
+    /* taller box */
+    text-align: center;
+    box-shadow: var(--pp-shadow);
+    overflow: hidden;
+    isolation: isolate;
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+
+.pp-card h3 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 600
+}
+
+.pp-intro {
+    margin: 0 0 18px;
+    color: var(--pp-muted);
+    font-size: 12px;
+    line-height: 1.6;
+    font-weight: 400
+}
+
+/* Price */
+.pp-price {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 6px 0 18px
+}
+
+.pp-amount {
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    transition: color .25s ease
+}
+
+.pp-unit {
+    font-size: 12px;
+    color: #94a3b8;
+    transition: color .25s ease
+}
+
+.pp-card:hover .pp-amount,
+.pp-card:hover .pp-unit {
+    color: var(--pp-blue)
+}
+
+/* List */
+.pp-list {
+    list-style: none;
+    margin: 12px 0 16px;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+    text-align: left
+}
+
+.pp-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    color: #0b1220;
+    font-size: 13px
+}
+
+.pp-list svg {
+    width: 14px;
+    height: 14px;
+    flex: 0 0 14px;
+    fill: var(--pp-blue);
+    margin-top: 2px
+}
+
+/* Button */
+.pp-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid var(--pp-border);
+    padding: 11px 14px;
+    background: var(--pp-btn-blue);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .25s ease, transform .12s ease, box-shadow .25s ease, color .25s ease;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, .05);
+}
+
+.pp-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(15, 23, 42, .08)
+}
+
+/* Hover border + top sweep */
+@property --pp-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.pp-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: 16px;
+    background: conic-gradient(from var(--pp-angle),
+            transparent 0deg, transparent 332deg, var(--pp-blue) 332deg, var(--pp-blue) 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity .25s ease;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.pp-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, var(--pp-blue), transparent);
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: transform .6s ease, opacity .3s ease;
+}
+
+.pp-card:hover::after {
+    opacity: 1;
+    animation: pp-spin 3.2s linear infinite
+}
+
+.pp-card:hover::before {
+    transform: translateX(0);
+    opacity: .85
+}
+
+.pp-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 22px rgba(15, 23, 42, .08)
+}
+
+@keyframes pp-spin {
+    to {
+        --pp-angle: 360deg
+    }
+}
+
+/* --- Reveal on scroll --- */
+.pp-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .6s ease, transform .6s ease;
+    will-change: opacity, transform;
+}
+
+.pp-reveal.pp-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* stagger via nth-child */
+.pp-grid>.pp-reveal:nth-child(1) {
+    transition-delay: .0s
+}
+
+.pp-grid>.pp-reveal:nth-child(2) {
+    transition-delay: .06s
+}
+
+.pp-grid>.pp-reveal:nth-child(3) {
+    transition-delay: .12s
+}
+
+.pp-grid>.pp-reveal:nth-child(4) {
+    transition-delay: .18s
+}
+
+/* Reduced motion: show immediately */
+@media (prefers-reduced-motion:reduce) {
+    .pp-reveal {
+        opacity: 1;
+        transform: none;
+        transition: none
+    }
+
+    .pp-card {
+        transition: none
+    }
+
+    .pp-card:hover {
+        transform: none;
+        box-shadow: var(--pp-shadow)
+    }
+
+    .pp-card::before {
+        transition: none
+    }
+
+    .pp-card::after {
+        animation: none
+    }
+}
+
+/* Mobile tweak: more TOP padding */
+@media (max-width:480px) {
+    .pp-pricing {
+        padding: 42px 14px 70px
+    }
+
+    .pp-grid {
+        gap: 16px
+    }
+
+    .pp-card {
+        padding: 44px 18px 28px
+    }
+
+    /* extra top padding on mobile */
+    .pp-amount {
+        font-size: 26px
+    }
+
+    .pp-list {
+        gap: 8px
+    }
+}

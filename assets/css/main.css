@@ -19813,8 +19813,12 @@ html.lenis body {
   line-height: 1.4;
   white-space: nowrap;
   animation: slideTextContinuous 25s linear infinite;
+  animation-delay: 0s;
   width: max-content;
   will-change: transform;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
 }
 
 .rs-text-slide-modern .rs-text-slider-inner:hover .rs-text-slide-title {
@@ -19838,6 +19842,66 @@ html.lenis body {
   100% {
     transform: translateX(-50%);
   }
+}
+
+/* Mobile-optimized infinite loop */
+@keyframes slideTextMobileInfinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Alternative mobile infinite loop for better performance */
+@keyframes slideTextMobileSeamless {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+/* Ensure smooth scrolling on mobile */
+@media (max-width: 991px) {
+  .rs-text-slide-modern .rs-text-slide-title {
+    -webkit-transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000;
+  }
+}
+
+/* Force immediate start and prevent gaps */
+.rs-text-slide-modern .rs-text-slide-title {
+  animation-fill-mode: both;
+  animation-play-state: running;
+  animation-delay: 0s !important;
+}
+
+/* Ensure animation starts immediately on page load */
+.rs-text-slide-modern .rs-text-slide-title {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Ensure content is long enough for seamless loop */
+@media (max-width: 991px) {
+  .rs-text-slide-modern .rs-text-slide-title {
+    min-width: 300%;
+    justify-content: flex-start;
+    gap: 15px;
+  }
+}
+
+/* Prevent any gaps in the animation */
+.rs-text-slide-modern .rs-text-slide-title {
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .rs-text-slide-modern .text-gradient {
@@ -19871,12 +19935,16 @@ html.lenis body {
 @media only screen and (min-width: 1200px) and (max-width: 1399px) {
   .rs-text-slide-modern .rs-text-slide-title {
     font-size: 22px;
+    animation: slideTextContinuous 25s linear infinite;
+    animation-delay: 0s;
   }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .rs-text-slide-modern .rs-text-slide-title {
     font-size: 20px;
+    animation: slideTextContinuous 25s linear infinite;
+    animation-delay: 0s;
   }
   .rs-text-slide-modern .rs-text-slider-inner {
     padding: 35px 50px;
@@ -19886,7 +19954,10 @@ html.lenis body {
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .rs-text-slide-modern .rs-text-slide-title {
     font-size: 18px;
-    gap: 15px;
+    gap: 12px;
+    animation: slideTextMobileSeamless 20s linear infinite;
+    will-change: transform;
+    animation-delay: 0s;
   }
   .rs-text-slide-modern .rs-text-slider-inner {
     padding: 30px 20px;
@@ -19900,6 +19971,9 @@ html.lenis body {
   .rs-text-slide-modern .rs-text-slide-title {
     font-size: 16px;
     gap: 12px;
+    animation: slideTextMobileSeamless 18s linear infinite;
+    will-change: transform;
+    animation-delay: 0s;
   }
   .rs-text-slide-modern .rs-text-slider-inner {
     padding: 25px 15px;
@@ -19915,7 +19989,9 @@ html.lenis body {
     gap: 8px;
     flex-direction: row;
     flex-wrap: nowrap;
-    animation: slideTextMobile 15s linear infinite;
+    animation: slideTextMobileSeamless 15s linear infinite;
+    will-change: transform;
+    animation-delay: 0s;
   }
   .rs-text-slide-modern .rs-text-slider-inner {
     padding: 20px 10px;
@@ -19928,15 +20004,7 @@ html.lenis body {
   }
 }
 
-/* Mobile-specific animation for better performance */
-@keyframes slideTextMobile {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .rs-text-slide-four .rs-text-slide-wrapper .rs-text-slide-item {
     font-size: 80px;
