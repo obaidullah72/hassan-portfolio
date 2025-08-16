@@ -12285,17 +12285,30 @@ html.lenis body {
   }
 }
 
+/* Bio content layout */
+.rs-about-bio .bio-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.rs-about-bio .bio-content ul {
+  flex: 1;
+}
+
 /* Signature image styles for about page */
 .rs-about-bio .signature-img {
   max-width: 200px;
   width: 100%;
   height: auto;
   display: block;
-  margin-top: 20px;
-  margin-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 0;
   filter: brightness(0.9) contrast(1.1);
   transition: all 0.3s ease;
   opacity: 0.9;
+  flex-shrink: 0;
 }
 
 .rs-about-bio .signature-img:hover {
